@@ -35,10 +35,10 @@ def run():
     df_srt["Ends"] = ends_srt
     df_srt["Subtitles"] = subs_srt
     st.write("Uploaded subtitles:")
-    st.dataframe(df)
+    st.dataframe(df_srt)
     st.write("")
     st.write("Filtered subtitles (keyword: 'you'):")
-    filtered = df[df['Subtitles'].str.contains("you")]
+    filtered = df_srt[df_srt['Subtitles'].str.contains("you")]
     st.dataframe(filtered)
     
     stringio2 = io.StringIO(input_scc.getvalue().decode("utf-8"))
@@ -46,7 +46,7 @@ def run():
     pysubs = SCCReader().read(data2)
     data3 = pysubs.get_captions(lang="en-US")
     df2 = pd.DataFrame(data3)
-    st.write(df2)    
+    st.dataframe(df2)    
     
 if st.sidebar.button("Run cleaning"):
     run()
