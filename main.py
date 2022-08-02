@@ -8,8 +8,6 @@ import io
 
 st.sidebar.title("Subtitle Cleaning")
 input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
-input_scc = st.sidebar.file_uploader("Upload SCC file:")
-
 
 def run():
     starts = []
@@ -29,7 +27,12 @@ def run():
     df["Starts"] = starts
     df["Ends"] = ends
     df["Subtitles"] = subs
+    st.write("Uploaded subtitles:")
     st.write(df)
+    st.write("")
+    st.write("Filtered subtitles (keyword: "you"):")
+    df[df['Subtitles'].str.contains("you")]
+    
     
 if st.sidebar.button("Run cleaning"):
     run()
