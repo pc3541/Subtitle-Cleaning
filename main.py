@@ -12,8 +12,9 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
 def run():
-    content = input_srt.getvalue()
-    st.write(content)
+    content = io.StringIO(input_srt.getvalue().decode('utf-8'))
+    data = content.read()
+    st.write(data)
 
 if st.sidebar.button("Run cleaning"):
     run()
