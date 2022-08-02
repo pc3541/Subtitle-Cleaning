@@ -21,9 +21,9 @@ def run():
     subtitle_generator = srt.parse(data)
     subtitles = list(subtitle_generator)
     for x in range(len(subtitles)):
-        subtitles[x].start = timedelta_to_srt_timestamp(subtitles[x].start)
+        subtitles[x].start = srt.timedelta_to_srt_timestamp(subtitles[x].start)
         starts.append(subtitles[x].start)
-        subtitles[x].end = timedelta_to_srt_timestamp(subtitles[x].end)
+        subtitles[x].end = srt.timedelta_to_srt_timestamp(subtitles[x].end)
         ends.append(subtitles[x].end)
         subs.append(subtitles[x].content)
     df["Starts"] = starts
