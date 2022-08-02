@@ -7,6 +7,8 @@ import io
 import pycaption
 from pycaption import SCCReader, SRTWriter
 
+bad_words = pd.read_csv("https://github.com/pc3541/Subtitle-Cleaning/blob/main/exclusion_words.csv")
+
 st.sidebar.title("Subtitle Cleaning")
 input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
 input_scc = st.sidebar.file_uploader("Upload SCC file:", type=['scc'])
@@ -20,6 +22,8 @@ def run():
     subs_scc = []
     df_srt = pd.DataFrame()
     df_scc = pd.DataFrame()
+    filtered_df_srt = pd.DataFrame(header=["Starts","Ends","Filtered subtitles"])
+    filtered_df_scc = pd.DataFrame(header=["Starts","Ends","Filtered subtitles"])
     
     if input_srt is not None:
         stringio = io.StringIO(input_srt.getvalue().decode("utf-8"))
@@ -38,9 +42,10 @@ def run():
         st.write("Uploaded subtitles (SRT):")
         st.dataframe(df_srt)
         st.write("")
-        st.write("Filtered subtitles (SRT, keyword: 'you'):")
-        filtered = df_srt[df_srt['Subtitles'].str.contains("you")]
-        st.dataframe(filtered) 
+        st.write("Filtered subtitles (SRT):")
+        for word in bad_words:
+            filtered_df_srt.concat(df_srt['Subtitles'].str.contains("word"))
+        st.dataframe(filtered_df_srt)
     
     if input_scc is not None:
         pysubs = SCCReader().read(input_scc.getvalue().decode("utf-8"))
@@ -59,9 +64,10 @@ def run():
         st.write("Uploaded subtitles (SCC):")
         st.dataframe(df_scc)
         st.write("")
-        st.write("Filtered subtitles (SCC, keyword: 'me'):")
-        filtered_scc = df_scc[df_scc['Subtitles'].str.contains("me")]
-        st.dataframe(filtered_scc) 
+        st.write("Filtered subtitles (SCC):")
+        for word in bad_words:
+            filtered_df_scc.concat(df_scc['Subtitles'].str.contains("word"))
+        st.dataframe(filtered_df_scc) 
     
 if st.sidebar.button("Run cleaning"):
     run()
