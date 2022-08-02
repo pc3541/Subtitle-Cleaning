@@ -13,8 +13,7 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:", type=['scc'])
 
 def run():
     pysubs = SCCReader().read(input_scc.getvalue().decode("utf-8"))
-    data3 = pysubs.get_captions(lang="en-US")
-    st.write(data3)
+    st.write(pysubs)
     
 if st.sidebar.button("Run cleaning"):
     run()
