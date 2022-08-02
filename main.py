@@ -12,8 +12,8 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
 def run():
-    dataframe = pd.read_csv(input_srt)
-    st.write(dataframe)
+    content = input_srt.getvalue()
+    st.write(content)
 
 if st.sidebar.button("Run cleaning"):
     run()
