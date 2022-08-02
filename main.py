@@ -20,6 +20,7 @@ def run():
     data = stringio.read()
     subtitle_generator = srt.parse(data)
     subtitles = list(subtitle_generator)
+    st.write(subtitles)
     for sub in subtitles:
         starts.append(sub.start)
         ends.append(sub.end)
