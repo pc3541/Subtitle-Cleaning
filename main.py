@@ -16,7 +16,7 @@ def run():
     ends = []
     subtitles = []
     df = pd.DataFrame()
-    content = StringIO(input_srt.getvalue().decode("utf-8"))
+    content = io.StringIO(input_srt.decode('utf-8'))
     subs = pysrt.open(content)
     for sub in subs:
         starts.append(sub.start)
