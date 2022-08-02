@@ -14,7 +14,7 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 def run():
     starts = []
     ends = []
-    subtitles = []
+    subs = []
     df = pd.DataFrame()
     stringio = io.StringIO(input_srt.getvalue().decode("utf-8"))
     data = stringio.read()
@@ -23,13 +23,13 @@ def run():
     for x in range(len(subtitles)):
         starts.append(subtitles[x].start)
         ends.append(subtitles[x].end)
-        subtitles.append(subtitles[x].content)
+        subs.append(subtitles[x].content)
     df["Starts"] = starts
     df["Ends"] = ends
     st.write(starts)
     st.write(ends)
-    st.write(subtitles)
-    df["Subtitles"] = subtitles
+    st.write(subs)
+    df["Subtitles"] = subs
     
 if st.sidebar.button("Run cleaning"):
     run()
