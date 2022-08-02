@@ -6,8 +6,11 @@ import srt
 import io
 import pycaption
 from pycaption import SCCReader, SRTWriter
+import csv
 
-bad_words = pd.read_csv("https://raw.githubusercontent.com/pc3541/Subtitle-Cleaning/main/exclusion_words.csv")
+read_obj = pd.read_csv("https://raw.githubusercontent.com/pc3541/Subtitle-Cleaning/main/exclusion_words.csv")
+csv_reader = csv.reader(read_obj)
+bad_words = list(csv_reader)
 
 st.sidebar.title("Subtitle Cleaning")
 input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
