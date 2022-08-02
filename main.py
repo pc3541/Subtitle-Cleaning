@@ -44,7 +44,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SRT):")
         for word in bad_words:
-            filtered_df_srt = pd.concat([filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains(word)]]).drop_duplicates().reset_index(drop=True)
+            filtered_df_srt = pd.concat([filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains(str(word))]]).drop_duplicates().reset_index(drop=True)
         st.dataframe(filtered_df_srt)
     
     if input_scc is not None:
@@ -66,7 +66,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SCC):")
         for word in bad_words:
-            filtered_df_scc = pd.concat([filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains(word)]]).drop_duplicates().reset_index(drop=True)
+            filtered_df_scc = pd.concat([filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains(str(word))]]).drop_duplicates().reset_index(drop=True)
         st.dataframe(filtered_df_scc) 
     
 if st.sidebar.button("Run cleaning"):
