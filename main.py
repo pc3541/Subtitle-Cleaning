@@ -23,9 +23,7 @@ def run():
     df_srt = pd.DataFrame()
     df_scc = pd.DataFrame()
     filtered_df_srt = pd.DataFrame()
-    filtered_df_srt.columns = ["Starts","Ends","Filtered subtitles"]
     filtered_df_scc = pd.DataFrame()
-    filtered_df_scc.columns = ["Starts","Ends","Filtered subtitles"]
     
     if input_srt is not None:
         stringio = io.StringIO(input_srt.getvalue().decode("utf-8"))
@@ -47,6 +45,7 @@ def run():
         st.write("Filtered subtitles (SRT):")
         for word in bad_words:
             filtered_df_srt.concat(df_srt['Subtitles'].str.contains("word"))
+        filtered_df_srt.columns = ["Starts","Ends","Filtered subtitles"]
         st.dataframe(filtered_df_srt)
     
     if input_scc is not None:
@@ -69,6 +68,7 @@ def run():
         st.write("Filtered subtitles (SCC):")
         for word in bad_words:
             filtered_df_scc.concat(df_scc['Subtitles'].str.contains("word"))
+        filtered_df_scc.columns = ["Starts","Ends","Filtered subtitles"]
         st.dataframe(filtered_df_scc) 
     
 if st.sidebar.button("Run cleaning"):
