@@ -15,7 +15,7 @@ def run():
     ends = []
     subtitles = []
     df = pd.DataFrame()
-    input_file = list(uploader.value.values())[0]
+    input_file = list(input_file.value.values())[0]
     content = input_file['content']
     content = io.StringIO(content.decode('utf-8'))
     subs = pysrt.open(content)
