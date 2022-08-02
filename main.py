@@ -18,7 +18,7 @@ def run():
     data2 = stringio2.read()
     pysubs = SCCReader().read(data2)
     data3 = pysubs.get_captions(lang="en-US")
-    st.write(data3
+    st.write(data3)
     
 if st.sidebar.button("Run cleaning"):
     run()
