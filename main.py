@@ -11,7 +11,7 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
 def run():
-    print(input_srt)
+    st.write(input_srt)
 
 if st.sidebar.button("Run cleaning"):
     run()
