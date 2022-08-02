@@ -31,9 +31,9 @@ def run():
         subtitles[x].end = srt.timedelta_to_srt_timestamp(subtitles[x].end)
         ends_srt.append(subtitles[x].end)
         subs_srt.append(subtitles[x].content)
-    df["Starts"] = starts_srt
-    df["Ends"] = ends_srt
-    df["Subtitles"] = subs_srt
+    df_srt["Starts"] = starts_srt
+    df_srt["Ends"] = ends_srt
+    df_srt["Subtitles"] = subs_srt
     st.write("Uploaded subtitles:")
     st.dataframe(df)
     st.write("")
@@ -46,7 +46,7 @@ def run():
     pysubs = SCCReader().read(data2)
     data3 = pysubs.get_captions(lang="en-US")
     df2 = pd.DataFrame(data3)
-    print(df2)    
+    st.write(df2)    
     
 if st.sidebar.button("Run cleaning"):
     run()
