@@ -12,7 +12,7 @@ input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
 input_scc = st.sidebar.file_uploader("Upload SCC file:", type=['scc'])
 
 def run():
-    pysubs = SCCReader().read(input_scc.getvalue().decode("utf-8"))
+    pysubs = SCCReader().read(input_scc.getvalue())
     data3 = pysubs.get_captions(lang="en-US")
     st.write(data3)
     
