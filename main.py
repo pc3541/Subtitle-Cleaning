@@ -11,11 +11,18 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
 def run():
+    starts = []
+    ends = []
+    subtitles = []
+    df = pd.DataFrame()
     subs = pysrt.open(input_srt)
     for sub in subs:
-        print(sub.text)
-        print()
-    df = pd.read_csv(subs)
+        starts.append(sub.start)
+        ends.append(sub.end)
+        subtitles.append(sub.text)
+    df["Starts"] = starts
+    df["Ends"] = ends
+    df["Subtitles"] = subtitles
     print(df)
 
 if st.sidebar.button("Run cleaning"):
