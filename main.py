@@ -12,20 +12,6 @@ input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
 input_scc = st.sidebar.file_uploader("Upload SCC file:", type=['scc'])
 
 def run():
-    #Streamlit
-
-import streamlit as st
-import pandas as pd
-import srt
-import io
-import pycaption
-from pycaption import SCCReader, SRTWriter
-
-st.sidebar.title("Subtitle Cleaning")
-input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
-input_scc = st.sidebar.file_uploader("Upload SCC file:", type=['scc'])
-
-def run():
     starts_srt = []
     ends_srt = []
     subs_srt = []
