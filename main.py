@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from soustitle import Subtitle
+import Subtitle
 import io
 
 st.sidebar.title("Subtitle Cleaning")
