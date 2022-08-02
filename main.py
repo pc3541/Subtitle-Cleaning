@@ -28,11 +28,11 @@ def run():
     df["Ends"] = ends
     df["Subtitles"] = subs
     st.write("Uploaded subtitles:")
-    st.write(df)
+    st.dataframe(df)
     st.write("")
     st.write("Filtered subtitles (keyword: 'you'):")
-    df[df['Subtitles'].str.contains("you")]
-    
+    filtered = df[df['Subtitles'].str.contains("you")])
+    st.dataframe(filtered)
     
 if st.sidebar.button("Run cleaning"):
     run()
