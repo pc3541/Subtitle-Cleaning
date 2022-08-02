@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pysrt
+import srt
 import io
 
 st.sidebar.title("Subtitle Cleaning")
@@ -12,15 +12,21 @@ input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
 def run():
-    subs = pysrt.open(input_srt)
-    for sub in subs:
+    starts = []
+    ends = []
+    subtitles = []
+    df = pd.DataFrame()
+    data = input_srt.getvalue()
+    subtitle_generator = srt.parse(data)
+    subtitles = list(subtitle_generator)
+    for sub in subtitles:
         starts.append(sub.start)
         ends.append(sub.end)
         subtitles.append(sub.text)
     df["Starts"] = starts
     df["Ends"] = ends
     df["Subtitles"] = subtitles
-    st.write(df)
+    print(df)
 
 if st.sidebar.button("Run cleaning"):
     run()
