@@ -16,7 +16,8 @@ def run():
     ends = []
     subtitles = []
     df = pd.DataFrame()
-    data = input_srt.getvalue()
+    stringio = io.StringIO(input_srt.getvalue().decode("utf-8"))
+    data = stringio.read()
     subtitle_generator = srt.parse(data)
     subtitles = list(subtitle_generator)
     for sub in subtitles:
