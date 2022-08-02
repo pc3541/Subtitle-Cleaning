@@ -6,7 +6,7 @@ import numpy as np
 import pysrt
 
 st.sidebar.title("Subtitle Cleaning")
-input_file = st.sidebar.file_uploader("Upload SRT file:")
+input_srt = st.sidebar.file_uploader("Upload SRT file:")
 input_scc = st.sidebar.file_uploader("Upload SCC file:")
 
 
@@ -15,7 +15,7 @@ def run():
     ends = []
     subtitles = []
     df = pd.DataFrame()
-    input_file = list(input_file.value.values())[0]
+    input_file = list(input_srt.value.values())[0]
     content = input_file['content']
     content = io.StringIO(content.decode('utf-8'))
     subs = pysrt.open(content)
