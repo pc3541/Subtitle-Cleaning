@@ -25,9 +25,11 @@ def run():
         ends.append(subtitles[x].end)
         subtitles.append(subtitles[x].content)
     df["Starts"] = starts
+    st.write(df["Starts"])
     df["Ends"] = ends
+    st.write(df["Ends"])
     df["Subtitles"] = subtitles
-    print(df)
+    st.write(df)
 
 if st.sidebar.button("Run cleaning"):
     run()
