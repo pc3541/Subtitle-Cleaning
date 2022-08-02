@@ -6,11 +6,8 @@ import srt
 import io
 import pycaption
 from pycaption import SCCReader, SRTWriter
-import csv
 
-read_obj = pd.read_csv("https://raw.githubusercontent.com/pc3541/Subtitle-Cleaning/main/exclusion_words.csv")
-csv_reader = csv.reader(read_obj)
-bad_words = list(csv_reader)
+bad_words = pd.read_csv("https://raw.githubusercontent.com/pc3541/Subtitle-Cleaning/main/exclusion_words.csv")
 
 st.sidebar.title("Subtitle Cleaning")
 input_srt = st.sidebar.file_uploader("Upload SRT file:", type=['srt'])
@@ -47,7 +44,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SRT):")
         for index, row in bad_words.iterrows():
-            filtered_df_srt = pd.concat([filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains(str(row))]]).drop_duplicates().reset_index(drop=True)
+            filtered_df_srt = pd.concat([filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains(row)]]).drop_duplicates().reset_index(drop=True)
         st.dataframe(filtered_df_srt)
     
     if input_scc is not None:
@@ -69,7 +66,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SCC):")
         for index, row in bad_words.iterrows():
-            filtered_df_scc = pd.concat([filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains(str(row))]]).drop_duplicates().reset_index(drop=True)
+            filtered_df_scc = pd.concat([filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains(row)]]).drop_duplicates().reset_index(drop=True)
         st.dataframe(filtered_df_scc) 
     
 if st.sidebar.button("Run cleaning"):
