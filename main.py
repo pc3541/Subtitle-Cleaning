@@ -21,15 +21,15 @@ def run():
     subtitle_generator = srt.parse(data)
     subtitles = list(subtitle_generator)
     for x in range(len(subtitles)):
+        subtitles[x].start = timedelta_to_srt_timestamp(subtitles[x].start)
         starts.append(subtitles[x].start)
+        subtitles[x].end = timedelta_to_srt_timestamp(subtitles[x].end)
         ends.append(subtitles[x].end)
         subs.append(subtitles[x].content)
     df["Starts"] = starts
     df["Ends"] = ends
-    st.write(starts)
-    st.write(ends)
-    st.write(subs)
     df["Subtitles"] = subs
+    st.write(df)
     
 if st.sidebar.button("Run cleaning"):
     run()
