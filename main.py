@@ -25,8 +25,10 @@ def run():
         ends.append(subtitles[x].end)
         subtitles.append(subtitles[x].content)
     df["Starts"] = starts
+    df["Starts"] = df["Starts"].dt.days
     st.write(df["Starts"])
     df["Ends"] = ends
+    df["Ends"] = df["Ends"].dt.days
     st.write(df["Ends"])
     df["Subtitles"] = subtitles
     st.write(df)
