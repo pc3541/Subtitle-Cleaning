@@ -20,11 +20,10 @@ def run():
     data = stringio.read()
     subtitle_generator = srt.parse(data)
     subtitles = list(subtitle_generator)
-    st.write(subtitles)
-    for sub in subtitles:
-        starts.append(sub.start)
-        ends.append(sub.end)
-        subtitles.append(sub.content)
+    for x in range(len(subtitles)):
+        starts.append(subtitles[x].start)
+        ends.append(subtitles[x].end)
+        subtitles.append(subtitles[x].content)
     df["Starts"] = starts
     df["Ends"] = ends
     df["Subtitles"] = subtitles
