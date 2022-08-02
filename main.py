@@ -22,8 +22,10 @@ def run():
     subs_scc = []
     df_srt = pd.DataFrame()
     df_scc = pd.DataFrame()
-    filtered_df_srt = pd.DataFrame(names=["Starts","Ends","Filtered subtitles"])
-    filtered_df_scc = pd.DataFrame(names=["Starts","Ends","Filtered subtitles"])
+    filtered_df_srt = pd.DataFrame()
+    filtered_df_srt.columns = ["Starts","Ends","Filtered subtitles"]
+    filtered_df_scc = pd.DataFrame()
+    filtered_df_scc.columns = ["Starts","Ends","Filtered subtitles"]
     
     if input_srt is not None:
         stringio = io.StringIO(input_srt.getvalue().decode("utf-8"))
