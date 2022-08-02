@@ -44,7 +44,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SRT):")
         for word in bad_words:
-            pd.concat(filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains("word")])
+            pd.concat([filtered_df_srt, df_srt[df_srt['Subtitles'].str.contains("word")]])
         filtered_df_srt.columns = ["Starts","Ends","Filtered subtitles"]
         st.dataframe(filtered_df_srt)
     
@@ -67,7 +67,7 @@ def run():
         st.write("")
         st.write("Filtered subtitles (SCC):")
         for word in bad_words:
-            pd.concat(filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains("word")])
+            pd.concat([filtered_df_scc, df_scc[df_scc['Subtitles'].str.contains("word")]])
         filtered_df_scc.columns = ["Starts","Ends","Filtered subtitles"]
         st.dataframe(filtered_df_scc) 
     
