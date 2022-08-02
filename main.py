@@ -30,7 +30,7 @@ def run():
     st.write("Uploaded subtitles:")
     st.write(df)
     st.write("")
-    st.write("Filtered subtitles (keyword: "you"):")
+    st.write("Filtered subtitles (keyword: 'you'):")
     df[df['Subtitles'].str.contains("you")]
     
     
