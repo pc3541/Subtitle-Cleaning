@@ -23,7 +23,7 @@ def run():
     for sub in subtitles:
         starts.append(sub.start)
         ends.append(sub.end)
-        subtitles.append(sub.text)
+        subtitles.append(sub.content)
     df["Starts"] = starts
     df["Ends"] = ends
     df["Subtitles"] = subtitles
