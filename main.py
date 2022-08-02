@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pysrt
+import io
 
 st.sidebar.title("Subtitle Cleaning")
 input_srt = st.sidebar.file_uploader("Upload SRT file:")
@@ -15,7 +16,7 @@ def run():
     ends = []
     subtitles = []
     df = pd.DataFrame()
-    content = input_srt.getvalue()
+    content = StringIO(input_srt.getvalue().decode("utf-8"))
     subs = pysrt.open(content)
     for sub in subs:
         starts.append(sub.start)
@@ -24,7 +25,7 @@ def run():
     df["Starts"] = starts
     df["Ends"] = ends
     df["Subtitles"] = subtitles
-    st.write(df)
+    print(df)
 
 if st.sidebar.button("Run cleaning"):
     run()
